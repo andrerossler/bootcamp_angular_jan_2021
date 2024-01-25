@@ -1,1 +1,3 @@
-console.log("Ol? Mundo!");
+import { exemploIfLoop, exemploTipos } from "./aulas/primitivos";
+
+exemploIfLoop();
