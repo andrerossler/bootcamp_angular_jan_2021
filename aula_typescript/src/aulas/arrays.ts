@@ -43,23 +43,24 @@ export function somaNotas(notas:Array<number>){
    return notas.reduce((soma,nota) => soma + nota , 0);
 }
 
-class Alunos {    
+class AlunoClasse implements Aluno{    
     constructor(public nome: string, public nota: number) {}
 }
 
 export function criaAluno(){
-    const aluno = new Alunos("André", 8);
+    const aluno = new AlunoClasse("André", 8);
 }
 
 export function montaTurma(){
     return [
-        new Alunos("André", 10),
-        new Alunos("João", 8),
-        new Alunos("Maria", 10),
+        new AlunoClasse("André", 10),
+        new AlunoClasse("João", 8),
+        new AlunoClasse("Maria", 10),
     ];
 }
 
-export function filtraAlunoPorNota(turma: Array<Alunos>, nota: number){
+export function filtraAlunoPorNota(turma: Array<Aluno>, nota: number){
+/*    
     let turmaFiltrada:any = [];
     for (const Alunos of turma) {
         if  (Alunos.nota === nota) {   
@@ -67,4 +68,19 @@ export function filtraAlunoPorNota(turma: Array<Alunos>, nota: number){
     }
     }
     return turmaFiltrada;
+*/
+   return turma.filter(Alunos => Alunos.nota === nota);
+}
+export function buscaAlunoPorNota(turma: Array<Aluno>, nota: number){
+    return turma.find(Alunos => Alunos.nota == nota);
+}
+
+export function tirarPontoTurma(turma: Array<Aluno>, pontoNegativo:number) {
+    let turmaNegativa:Array<Aluno> = [];
+
+    turmaNegativa = turma.map((aluno)=> {
+        aluno.nota -= pontoNegativo;
+        return aluno;
+});
+return  turmaNegativa;
 }
